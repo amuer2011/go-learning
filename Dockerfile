@@ -20,3 +20,10 @@ ENV GOPATH /root/gopath
 # copy source files
 RUN mkdir -p /root/gopath/src/server
 COPY src/* /root/gopath/src/server/
+
+# build the server
+WORKDIR /root/gopath/src/server
+RUN go build -o server.bin test.go
+
+# startup the server
+CMD /root/gopath/src/server/server.bin
